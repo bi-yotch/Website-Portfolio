@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+    .container
+    {
+        width: 70%;
+        height: 100%;
+        padding-top: 50px;
+        padding-left: 125px;
+    }
+
+    #main
+    {
+        background-image: url('CV.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        height: 1400px;
+        width: 1100px;
+        font-size: 25px;
+    }
+  </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+</head>
+
+<body id="body" onload="displayResult()">
+
+  <div style="padding-left:16px" class="nav">
+    <h1>Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+  <div class="topnav" >
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a class="active" href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <script>
+    function loadXMLDoc(filename)
+    { xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", filename, false);
+      xhttp.send("");
+
+      return xhttp.responseXML;
+    }
+
+    function displayResult()
+    { xml = loadXMLDoc("Resume.xml");
+      xsl = loadXMLDoc("Resume.xsl");
+
+      xsltProcessor = new XSLTProcessor();
+      xsltProcessor.importStylesheet(xsl);
+      resultDocument = xsltProcessor.transformToFragment(xml, document);
+      document.getElementById("resume").appendChild(resultDocument);
+    }
+  </script>
+
+  <div align="center" style="font-size: 30px; padding-top:50px;">
+    <a href="ZSKresume.pdf" target="_blank">Access pdf file here.</a>
+  </div>
+
+  <div id="resume" class=container></div>
+
+  <br/><br/><br/><br/><br/><br/>
+
+
+
+  </body>
+</html>

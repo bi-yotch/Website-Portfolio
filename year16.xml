@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  year16[
+<!ELEMENT year16 (IMAGE*)>
+
+<!ELEMENT IMAGE (IMAGESRC, STYLE)>
+<!ELEMENT IMAGESRC (#PCDATA)>
+<!ELEMENT STYLE (#PCDATA)>
+]>
+
+<year16>
+  <IMAGE>
+    <IMAGESRC>2017/r1c1.png</IMAGESRC>
+    <STYLE>;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r1c2.png</IMAGESRC>
+    <STYLE>margin-top:-12.8%;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r1c3.png</IMAGESRC>
+    <STYLE>;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r1c4.png</IMAGESRC>
+    <STYLE>margin-top:-12.8%;</STYLE>
+  </IMAGE>
+
+
+  <IMAGE>
+    <IMAGESRC>2017/r2c1.png</IMAGESRC>
+    <STYLE>float:left;margin-top:0%;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r2c2.png</IMAGESRC>
+    <STYLE>margin-top:-12.8%; margin-left:0%;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r2c3.png</IMAGESRC>
+    <STYLE>margin-top:-12.8%;margin-top:0%;</STYLE>
+  </IMAGE>
+
+  <IMAGE>
+    <IMAGESRC>2017/r2c4.png</IMAGESRC>
+    <STYLE>margin-top:-12.8%;;</STYLE>
+  </IMAGE>
+
+</year16>

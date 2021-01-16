@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+
+    .animated {
+      font-weight:900;
+
+      background: url('Pics/bg.jpg') no-repeat;
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      color:transparent;
+      animation: moveBg 15s linear infinite;
+      -webkit-animation: moveBg 15s linear infinite;
+      animation-timing-function: ease-in-out;
+      -webkit-animation-timing-function: ease-in-out;
+    }
+
+    @keyframes moveBg {
+
+      0% {background-position:100% 0%;}
+      100% {background-position:0% 100%;}
+    }
+
+    </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+</head>
+
+<body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1 style="color:transparent; cursor:default;">Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+  <div class="topnav" >
+    <a href="index.html">Home</a>
+    <a class="active" href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <img src="Pics/Syeda Zainab.jpg" width="27%" style="margin-left:70px;margin-top:60px; float:left;">
+
+  <div style="margin-top:60px; margin-left: 460px; margin-right:80px; font-size:18px;">
+    Hello! I'm
+    <nobr class="animated" style="font-size:100px; font-family: Arial;font-weight:900;">SYEDA ZAINAB</nobr>
+    <br/><br/>
+    I'm currently studying for a Computer Science degree in University of Wollongong, Dubai. I was born in India, my native place, and raised in the Middle East.
+    I shifted to Dubai in the June of 2019. Before that, I lived in Kuwait for 11 years and then in Saudi Arabia for 6 years. I have a passion for coding, poetry,
+    leadership, friends and family.
+    <br/><br/>
+    I became interested in the field of Computer Science in the start of my high school. I had taken up the subject
+    solely because my favourite teacher taught it. With time, I was introduced to coding and was truly amazed by the possibility of creating programs which would
+    work the way we want it to. So Computer Science was no more just a 'subject' I studied in school, it became a hobby and a part of my daily routine. For a start,
+    I coded programs to the best of my imagination and those which would help my brother with his Math homework. Over the span of two years, I realized that for a
+    practical and logical personality, such as mine, coding and Computer Science would best suit me for a career.
+  </div>
+
+  <div style="margin-left:70px; margin-top:15px; font-size:18px;">
+    <i>Photo Credits: Soha Ghazi.</i>
+  </div>
+
+  <div style="margin-left:70px; margin-top:10px;  margin-right:80px; font-size:18px;">
+    <br/>
+    Along with coding, I have discovered other fields of interest such as in poetry, sports, leadership and public speaking. My school years have been more than just academics;
+    I've actively taken part in various intra-school as well as inter-school events. The best of my achievements would be, being felicitated as the Head Girl in my 12th
+    grade and representing my school in CBSE Nationals in the academic year 2018-19.
+  </div>
+
+  <br/><br/><br/>
+
+  </body>
+</html>

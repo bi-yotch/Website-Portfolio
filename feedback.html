@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+
+      .container {
+	   			width: 70%;
+	   			height: 100%;
+	   			padding-top: 45px; /* Top as suggested by t.niese */
+	   			padding-left: 45px; /* Adjust the value as needed to get it to be centered */
+	   	}
+
+      #enter {
+        text-align: center;
+      }
+
+      /*The boostrap used preceeds over the default h1 attributes*/
+      #szk {
+        display: block;
+        font-size: 2.3em;
+        color: black;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+        font-family: Times New Roman;
+      }
+
+      textarea:placeholder-shown {
+        font-size: 1.5em;
+        width: 100%;
+        height: 114px;
+      }
+
+      #description2 {
+        display: block;
+        font-size: 1.2em;
+        color: black;
+        font-family: Helvetica;
+      }
+
+      #errorComment, #errorName, #errorEmail {
+        color: #C11B17; /*Dark red*/
+      }
+
+      #commentSection {
+        width:100%;
+      }
+
+  </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+</head>
+
+<body id="body" onload="createDB()">
+
+  <div style="padding-left:16px">
+    <h1 id="szk">Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()" style="padding: 10px 16px;">Change background color!</button>
+
+  <div class="topnav"  style="padding: -2px 16px;">
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a class="active" href="feedback.html">Feedback</a>
+  </div>
+
+
+  <div class="container">
+
+    <h2 align="center" id="szk" style="font-size: 1.8em">Drop in some feedback and suggestions about this E-portfolio!</h2>
+    <h4 align="center" id="szk" style="font-weight: bold; font-style: italic; font-size: 18px; margin-top: -13px;">(Works on browsers that support WebSQL)</h4>
+    <p align="center" id="description2"> Mention your email address so that the developer can contact you.</p>
+
+    <div id="enter" class="form-group">
+      <form onsubmit="return false;">
+
+        <br/>
+        <textarea class="form-control" rows="5" cols="10" name="commentBox" id="commentBox" placeholder="Add a comment..."></textarea><br>
+        <p align="right" id="errorComment"></p>
+
+        <table style="width:80%" cellpadding="10">
+          <tr>
+            <td align="right" style="font-size:1.5em;">Comment as:&emsp;&emsp;&emsp;</td>
+            <td align="left"><input type="text" class="btn" style="cursor:auto" name="userName" size = "30" id="userName" placeholder="Please enter your name."></td>
+            <td align="left" id="errorName"></td>
+          </tr>
+          <tr>
+            <td align="right"style="font-size:1.5em;">Email-address:&emsp;&emsp;&emsp;<br/></td>
+            <td align="left"><br/><input type="text" class="btn" style="cursor:auto" name="emailAddress" size = "30" id="emailAddress" placeholder="Please enter a valid email-address."><br/>
+              <nobr style="font-weight: bold;">*Email will not be displayed.</nobr>
+            </td>
+            <td align="left" id="errorEmail"></td>
+          </tr>
+        </table>
+
+        <br/><button type="button" class="btn" style="width:17%" name="submitComment" onclick="checkInput()">Comment.</button>
+    </div>
+
+    <table border="2" cellpadding="10"  id="OutputSection" > </table>
+
+    <br/><br/>
+
+    <div id="commentSection" style="width:100%; padding-left:95px; padding-right:95px;">
+      <!--Where the comments will be displayed-->
+    </div>
+      <br/><br/><br/>
+    <button type="button" class="btn" style="width:20%" name="clear" onclick="editComment()">Edit comment.</button>
+    <button type="button" class="btn" style="width:20%" name="clear" onclick="clearDatabase()">Clear ALL.</button>
+
+  </div>
+
+  <br/><br/><br/>
+
+  <script>
+
+    var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+    function createDB(){
+      //clearDatabase();
+
+      //Creating the table
+      db.transaction(function (tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS FEEDBACK(comment MEMO, userName VARCHAR, emailAddress VARCHAR PRIMARY KEY, dateCommented VARCHAR, dayCommented VARCHAR, timeCommented VARCHAR)');
+      });
+
+      displayDB();
+    }
+
+    function displayDB() {
+        db.transaction( function (tx) {
+          tx.executeSql('SELECT * FROM FEEDBACK', [], function (tx, results) {
+
+              var len = results.rows.length;
+              var html = '<table border="1" cellpadding="10" style="border: 1px solid lightgrey"  id="OutputSection" ><tr><th>Comment</th><th>User Name</th><th>Email Address</th><th>Date</th><th>Day</th><th>Time</th></tr>';
+              var dQ="";
+              for (var i = 0; i < len; i++)
+              {
+                  //HTML code for table
+                  html += "<tr><td>"+results.rows.item(i).comment+"</td><td>"+results.rows.item(i).userName+"";
+                  html += "</td><td>"+results.rows.item(i).emailAddress+"</td><td>"+results.rows.item(i).dateCommented+"</td><td>"+results.rows.item(i).dayCommented+"";
+                  html += "</td><td>"+results.rows.item(i).timeCommented+"</td></tr>";
+
+                  //HTML code for the comment section
+                  dQ += "<img src='Pics/doubleQuotesOpen.png' width='40px'><p align='center' width='70%' style='color:black;font-size:1.5em;font-family:Times;'><br/>";
+                  dQ += ""+results.rows.item(i).comment+"</p><p align='right' style='color:black;font-size:1.3em;font-family:Times;font-style:italic;'>";
+                  dQ += "<img src='Pics/doubleQuotesClose.png' width='40px'><br/>-"+results.rows.item(i).userName;
+                  dQ += "<br/>Commented on <b>"+results.rows.item(i).dateCommented+", " +results.rows.item(i).dayCommented+"</b> at <b>";
+                  dQ += results.rows.item(i).timeCommented+"</b></p><br/><br/>";
+              }
+              //document.getElementById("OutputSection").innerHTML = html;
+
+              document.getElementById("commentSection").innerHTML = dQ;
+
+          }, null);
+
+        });
+    }
+
+    function checkInput() {
+      var comment = document.getElementById('commentBox').value;
+      if(comment=='')
+       document.getElementById("errorComment").innerHTML = "Enter your comment in the box above.";
+      else
+      {
+        document.getElementById("errorComment").innerHTML = "";
+        var testComment = true;
+      }
+
+      var name = document.getElementById('userName').value;
+      var testName = /^[a-zA-Z\. ]{4,40}$/.test(name);
+      if(testName==false)
+       document.getElementById("errorName").innerHTML = "Enter a valid Name.";
+      else
+        document.getElementById("errorName").innerHTML = "";
+
+      var email = document.getElementById('emailAddress').value;
+      var testEmail = /^([a-zA-Z0-9_\.])+[@]([a-zA-Z])+([\.])([a-zA-Z]{2,7})$/.test(email);
+      if(testEmail==false)
+       document.getElementById("errorEmail").innerHTML = "Enter a valid Email Address.";
+      else
+        document.getElementById("errorEmail").innerHTML = "";
+
+      if(testComment==true && testName==true && testEmail==true)
+        insertComment();
+
+      if(testComment==false || testName==false || testEmail==false)
+        alert("Error(s) occured during submission.\n Please re-check the content entered.");
+    }
+
+    function insertComment() {
+      var commentBox = document.getElementById("commentBox").value;
+      var userName = document.getElementById("userName").value;
+      var emailAddress = document.getElementById("emailAddress").value;
+      var dateCommented = getDate();
+      var dayCommented = getDay();
+      var timeCommented = getTime();
+
+        db.transaction(function (tx) {
+          tx.executeSql('SELECT * FROM FEEDBACK', [], function (tx, results) {
+
+            var flag = true;
+            for(var i=0; i <results.rows.length; i++)
+              if(emailAddress == results.rows.item(i).emailAddress)
+                  flag=false;
+
+            if(flag==true)
+            {
+              tx.executeSql('INSERT INTO FEEDBACK VALUES ("'+commentBox+'", "'+userName+'", "'+emailAddress+'", "'+dateCommented+'", "'+dayCommented+'", "'+timeCommented+'")');
+              alert('Thank you for your feedback!');
+              displayDB();
+            }
+            else
+              alert('Error! A comment with the same email address already exists.');
+      }, null);
+
+    });
+   }
+
+    var today = new Date();
+    function getDate() {
+      var date = today.getDate();//Passes the day
+      date += "/"+today.getMonth();//Passes the month
+      date += "/"+today.getFullYear();//Passes the year
+      return date;
+    }
+
+    function getDay() {
+      var dayIndex = today.getDay();
+      var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+      return daylist[dayIndex];
+    }
+
+    function getTime() {
+      var hour = today.getHours();
+      var minute = today.getMinutes();
+      var second = today.getSeconds();
+
+      var pmam = (hour >= 12)? " PM ":" AM ";
+      hour = (hour >= 12) ? (hour - 12): hour;
+      if (hour===0 && pmam===' PM ')
+      {
+        if (minute===0 && pmam===0)
+        {
+          hour=12;
+          pmam=' Noon';
+        }
+        else
+        {
+          hour=12;
+          pmam=' PM';
+        }
+      }
+
+      if (hour===0 && pmam===' AM ')
+      {
+        if (minute===0 && second===0)
+        {
+          hour=12;
+          pmam=' Midnight';
+        }
+        else
+        {
+          hour=12;
+          pmam=' AM';
+        }
+      }
+
+      return (hour+" "+pmam+" : "+minute+" : "+second);
+    }
+
+    function clearDatabase() {
+      db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM FEEDBACK;');
+
+        createDB();
+      });
+    }
+
+    function editComment() {
+      var name = prompt('Enter the name: ');
+      var email = prompt('Enter email address:');
+
+      db.transaction( function (tx) {
+        tx.executeSql('SELECT * FROM FEEDBACK WHERE userName LIKE "'+name+'" AND emailAddress LIKE "'+email+'"', [], function (tx, results) {
+
+            if(results.rows.length==1)
+            {
+              var newComment = prompt("Edit Comment: ", results.rows.item(0).comment+"");
+              tx.executeSql('UPDATE FEEDBACK SET comment = "'+newComment+'" WHERE userName LIKE "'+name+'" AND emailAddress LIKE "'+email+'"');
+
+              tx.executeSql('UPDATE FEEDBACK SET dateCommented = "'+getDate()+'", dayCommented = "'+getDay()+'", timeCommented = "'+getTime()+'" WHERE userName LIKE "'+name+'" AND emailAddress LIKE "'+email+'"');
+              displayDB();
+            }
+            else
+              alert("Error! Invalid information; NO such comment exists.");
+        }, null);
+      });
+
+    }
+
+  </script>
+
+  </body>
+</html>

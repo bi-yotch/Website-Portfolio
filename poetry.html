@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+
+  #container {
+      width: 90%;
+      height: 100%;
+      padding-top: 0%; /* Top as suggested by t.niese */
+      padding-left: 45px; /* Adjust the value as needed to get it to be centered*/
+      padding-right: 45px;
+      align-self: center;
+      position: center;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+  <script>
+
+    function getPoemAJAX(poemId){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if(xhttp.readyState == 4 && xhttp.status == 200)
+          processInformation(xhttp, poemId);
+      };
+
+      xhttp.open("GET", "http://localhost/poem.json", true);
+      xhttp.send();
+    }
+
+    function processInformation(xhttp, poemId) {
+      var jsonText = xhttp.responseText;
+      var poemObj ;
+      poemObj = JSON.parse(jsonText);
+      display(poemObj, poemId);
+    }
+
+    function display(obj, poemId) {
+      var html = "";
+
+      for(var i in obj.Poem)
+        if(poemId==obj.Poem[i].name)
+            html += obj.Poem[i].content;
+
+      document.getElementById(poemId).innerHTML = ''+html+'';
+    }
+
+    function hide(poemId){
+
+      document.getElementById(poemId).innerHTML = "<a onclick=getPoemAJAX('"+poemId+"') style='color:darkblue;font-size:16px; text-decoration:underline; cursor:pointer;''>[Read more.]</a>";
+    }
+
+  </script>
+
+</head>
+
+<body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1>Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+
+  <div class="topnav" >
+    <a href="homepage.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a class="active" href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <br/><br/>
+  <h1 align="center" style="font-size:40px;">Here's some poetry written by Syeda;</h1>
+  <p align="center" style="font-size:20px; margin-top:-1%;">Check out her Instagram writing account below!</p>
+  <br/>
+  <table id="container">
+    <tr>
+      <td align="center">
+        <code>
+          <iframe id="instagram-embed-0" class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/B5x2K-cHKak/embed?utm_source=ig_embedembed/captioned/"
+          scrolling="no" data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+      <td style="padding-left:5%">
+        <br/><b style="font-size: 20px">Rain</b>
+        <br/>Under this blanket of water
+        <br/>You see some running with the fear of ruining their makeup,
+        <br/>Some walk so slow as if this is where they belong.
+        <br/>Making her way through, drenched, a teenager's eyes sparkle with young love and good days,
+        <br/>It makes you question every bit of shade you stood under.
+
+        <nobr id="rain">
+          <a onclick="getPoemAJAX('rain')" style="color:darkblue;font-size:16px; text-decoration:underline; cursor:pointer;">
+            [Read more.]
+          </a>
+        </nobr>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+        <br/>
+        <code>
+          <iframe id="instagram-embed-0"  height=504px; class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/BW9p4XnDdoY/embed?utm_source=ig_embedembed/captioned/" scrolling="no" data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+      <td style="padding-left:5%">
+        <br/><b style="font-size: 20px">Beautiful You</b>
+        <br/>Close your eyes
+        <br/>And imagine the blue sky
+        <br/>Think about how high
+        <br/>You want to fly
+
+        <nobr id="you">
+          <a onclick="getPoemAJAX('you')" style="color:darkblue;font-size:16px; text-decoration:underline; cursor:pointer;">
+            [Read more.]
+          </a>
+        </nobr>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+        <br/>
+        <code>
+          <iframe id="instagram-embed-0"  height=504px; class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/By2ptm_FOhg/embed?utm_source=ig_embedembed/captioned/" scrolling="no"
+          data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+      <td style="padding-left:5%">
+        <br/><b style="font-size: 20px">Uncertainty</b>
+        <br/>On this day.
+        <br/>I, alone, took a different route
+        <br/>Where I came across
+        <br/>Fallen, dead leaves scattered
+        <br/>Even with this mild breeze,
+        <br/>They lay still
+        <br/>Looking like clusters of countries; continents.
+        <br/>Some in groups, some alone.
+        <br/>However, none lonely.
+
+        <nobr id="uncertainty">
+          <a onclick="getPoemAJAX('uncertainty')" style="color:darkblue;font-size:16px; text-decoration:underline; cursor:pointer;">
+            [Read more.]
+          </a>
+        </nobr>
+
+      </td>
+    </tr>
+
+  </table>
+
+  <br/>
+  <h1 align="center" style="font-size:33px;">Syeda's poetry posted on other writing accounts.</h1>
+  <p align="center" style="font-size:20px; margin-top:-1%;">Here are a few accounts she has collaborated with,</p>
+
+  <table id="container">
+    <tr>
+      <td align="center">
+        <br/>
+        <code>
+          <iframe id="instagram-embed-0"  height=504px; class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/BS5nd9PBa54/embed?utm_source=ig_embedembed/captioned/" scrolling="no"
+          data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+
+      <td align="center">
+        <br/>
+        <code>
+          <iframe id="instagram-embed-0"  height=504px; class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/BWg5oJmH_8d/embed?utm_source=ig_embedembed/captioned/" scrolling="no"
+          data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+
+      <td align="center">
+        <br/>
+        <code>
+          <iframe id="instagram-embed-0"  height=504px; class="instagram-media instagram-media-rendered"
+          style="background: white; width:80%; border-radius: 3px; border: 1px solid #dbdbdb; box-shadow: none; display: block; padding: 5px;"
+          src="https://www.instagram.com/p/BmtSjvkB8Wf/embed?utm_source=ig_embedembed/captioned/" scrolling="no"
+          data-instgrm-payload-id="instagram-media-payload-0" height="580" frameborder="0">
+          </iframe>
+        </code>
+        <br/>
+      </td>
+    </tr>
+  </table>
+
+
+  <br/><br/><br/><br/>
+
+  </body>
+</html>

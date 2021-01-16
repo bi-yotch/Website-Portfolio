@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+    <script>
+        function getRandomColor() {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+
+        function setRandomColor() {
+          document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+        }
+
+    </script>
+
+      <!-- Flipster CSS-->
+      <link rel="stylesheet" href="js_css/jquery.flipster.min.css">
+
+      <!-- jQuery-->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+      <!-- Flipster Js-->
+      <script src="js_css/jquery.flipster.infinite.js"></script>
+
+      <script>
+          $(document).ready(function(){
+            $("#carousel").flipster({
+            style: 'carousel',
+            spacing: -0.5,
+            nav: true,
+            buttons:  true,
+          });
+        });
+      </script>
+
+
+</head>
+
+<body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1>Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+  <div class="topnav" >
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a class="active" href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <br/>
+
+
+    <div id="carousel">
+          <ul class="flip-items">
+
+            <li data-flip-title="Game of Thrones" data-flip-category="TV Shows">
+                <a href="https://www.imdb.com/title/tt0944947/?ref_=fn_al_tt_1" target="_blank">
+                    <img width="250" src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Sherlock" data-flip-category="TV Shows">
+                <a href="https://www.imdb.com/title/tt1475582/" target="_blank">
+                    <img width="250" src="https://m.media-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Chernobyl" data-flip-category="TV Shows">
+                <a href="https://www.imdb.com/title/tt7366338/" target="_blank">
+                    <img width="250" src="https://m.media-amazon.com/images/M/MV5BZGQ2YmMxZmEtYjI5OS00NzlkLTlkNTEtYWMyMzkyMzc2MDU5XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SY1000_CR0,0,666,1000_AL_.jpg">
+                </a>
+            </li>
+
+            <li data-flip-title="Avengers: End Game" data-flip-category="Movies">
+                <a href="https://www.imdb.com/title/tt4154796/" target="_blank">
+                    <img width="250" src="https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Oculus" data-flip-category="Movies">
+                <a href="https://www.imdb.com/title/tt2388715/" target="_blank">
+                    <img width="250" src="https://images-na.ssl-images-amazon.com/images/I/61SQcY-ubmL._AC_SY741_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="The Theory of Everything" data-flip-category="Movies">
+                <a href="https://www.imdb.com/title/tt2980516/" target="_blank">
+                    <img width="250" src="https://m.media-amazon.com/images/M/MV5BMTAwMTU4MDA3NDNeQTJeQWpwZ15BbWU4MDk4NTMxNTIx._V1_SY1000_CR0,0,674,1000_AL_.jpg">
+                </a>
+            </li>
+
+            <li data-flip-title="The Alchemist" data-flip-category="Books">
+                <a href="https://www.goodreads.com/book/show/18144590-the-alchemist" target="_blank">
+                    <img width="250" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1466865542l/18144590._SY475_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Trylle" data-flip-category="Books">
+                <a href="https://www.panmacmillan.com/authors/amanda-hocking/trylle-the-complete-trilogy/9781447283713" target="_blank">
+                    <img width="250" src="https://panmacmillanapi.blob.core.windows.net/pmapi/e12a8195-4610-4b2d-fa9f-08d58e45775c/editions/2f4c8fcf-125f-4e33-8cba-08d5dd189cee/original_400_600.jpg">
+                </a>
+            </li>
+            <li data-flip-title="The Prisoner Of Tehran" data-flip-category="Books">
+                <a href="https://www.amazon.co.uk/Prisoner-Tehran-Womans-Survival-Torture/dp/0719522390" target="_blank">
+                    <img width="250" src="https://images-na.ssl-images-amazon.com/images/I/41DRcOR8ShL._SX324_BO1,204,203,200_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Revolution 2020" data-flip-category="Books">
+                <a href="https://www.goodreads.com/book/show/12615008-revolution-2020" target="_blank">
+                    <img width="250" src="https://images-na.ssl-images-amazon.com/images/I/516ga-QDjAL._SX326_BO1,204,203,200_.jpg">
+                </a>
+            </li>
+            <li data-flip-title="Never Never" data-flip-category="Books">
+                <a href="https://www.goodreads.com/book/show/24378015-never-never" target="_blank">
+                    <img width="250" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1428934147l/24378015.jpg">
+                </a>
+            </li>
+
+          </ul>
+        </div>
+
+        <br/><br/>
+
+  </body>
+</html>

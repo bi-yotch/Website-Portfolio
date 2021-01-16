@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+
+    .container {
+        width: 90%;
+        height: 100%;
+        padding-top: 0%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #szk {
+      display: block;
+      font-size: 2.3em;
+      color: black;
+      margin-top: 0.67em;
+      margin-bottom: 0.67em;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: bold;
+      font-family: Times New Roman;
+    }
+
+    img {
+       padding-top: 15px;
+       padding-left: 15px;
+       padding-right: 15px;
+       padding-bottom: 15px;
+    }
+
+    .yearButton {
+      background-color:#333;
+     border-radius:25px;
+     border:1px solid white;
+     display:inline-block;
+     cursor:pointer;
+     color:#ffffff;
+     font-family:Times;
+     font-size:18px;
+     padding:12px 16px;
+     text-decoration:none;
+     text-shadow:0px 1px 0px #290ccc;
+
+     margin-top:1%;
+     margin-left:20%;
+     cursor:pointer;
+    }
+
+    .yearButton:hover {
+     background-color:black;
+    }
+
+    #yearDisplay {
+      margin-top:1%;
+      font-family:Vivaldi;
+      font-size: 80px;
+    }
+
+  </style>
+
+  <script>
+
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+//For tool tip
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+
+      //Functions for AJAX
+    function loadXMLDoc(yearId) {
+
+      hideAll();
+
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+          myFunction(xmlhttp, yearId);
+      };
+
+      if(yearId=="year16")
+        document.getElementById("yearDisplay").innerHTML= "Year 2016-17";
+      if(yearId=="year18")
+        document.getElementById("yearDisplay").innerHTML= "Year 2018-19";
+
+
+      xmlhttp.open("GET", "http://localhost/"+yearId+".xml", true);
+      xmlhttp.send();
+    }
+
+    function myFunction(xml, yearId) {
+      var xmlDoc = xml.responseXML;
+      var itemArray = parseXML(xmlDoc);
+      display(itemArray, yearId);
+    }
+
+    function parseXML(xmlDoc)  {
+      var itemElements = xmlDoc.getElementsByTagName("IMAGE");
+
+      var itemArray = [];
+
+      for(var i=0; i<itemElements.length; i++) {
+        var item = {};
+
+        item.image = itemElements[i].getElementsByTagName("IMAGESRC")[0].childNodes[0].nodeValue;
+        item.style = itemElements[i].getElementsByTagName("STYLE")[0].childNodes[0].nodeValue;
+        itemArray.push(item);
+      }
+      return itemArray;
+    }
+
+    function display(itemArray, yearId) {
+      var html="";
+
+      if(yearId=="year16")
+        var width="24.5%";
+      if(yearId=="year18")
+        var width="19.3%";
+
+      for(var i=0; i<itemArray.length; i++)
+        html += " <img src='" + itemArray[i].image + "' width='"+width+"' style='" + itemArray[i].style+"'> ";
+
+      document.getElementById(yearId).innerHTML += html;
+    }
+
+    function hideAll(){
+      document.getElementById("intro").innerHTML ="";
+      document.getElementById("year16").innerHTML ="";
+      document.getElementById("year18").innerHTML ="";
+    }
+
+  </script>
+
+</head>
+
+<body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1 id="szk">Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()" style="padding: 10px 16px;">Change background color!</button>
+
+  <div class="topnav"  style="padding: -1px 16px;">
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a class="active" href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+
+  <div align=center style="margin-left:auto; margin-right:auto;">
+    <br/><h1 id="yearDisplay" style="color:black; font-weight:bold;">Sport events<h1><br/>
+  </div>
+
+  <div style="margin-left:10%; margin-top:-6%">
+    <br/><br/>
+    <button class="yearButton" style="margin-left:auto; margin-right:auto;" onclick="loadXMLDoc('year16')">2016-17</button>
+    <button class="yearButton" style="margin-left:2%;" onclick="loadXMLDoc('year18')">2018-19</button>
+    <br/>
+  </div>
+
+  <div class="container">
+
+    <div  id="intro">
+      <div>
+        <img src="Pics/Discus.png" style="float:left; padding-top:120px" data-toggle="tooltip" data-placement="bottom" title="Discus Throw"/>
+      </div>
+
+        <img src="Pics/Badminton.png" width="20%" style="float:right;transform: scaleX(-1);" data-toggle="tooltip" data-placement="top" title="Badminton" />
+
+      <div style="color:black;font-family:Times;font-size:200%;margin-left:auto; margin-right:auto; margin-top:1" align="center">
+          <br/><br/><br/>
+          Click on the buttons above to navigate through pictures of Syeda participating in various Sport events.
+          <br/><br/><br/>
+      </div>
+    </div>
+
+    <div id="year16"></div>
+
+    <div id="year18"></div>
+
+  </div>
+
+  <br/><br/><br/><br/><br/><br/>
+
+  </body>
+
+</html>

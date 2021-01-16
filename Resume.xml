@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  resume[
+<!ELEMENT resume (intro, profile, education, skills*, competencies*, contact, hobby*)>
+
+<!ELEMENT intro (name, post)>
+<!ELEMENT profile (line1, line2)>
+<!ELEMENT education (university, school, primarySchool)>
+<!ELEMENT skills (name, type)>
+<!ELEMENT competencies (name, type)>
+<!ELEMENT contact (phone, linkedIn, email)>
+<!ELEMENT hobby (hobbyNumber, hobbyName)>
+
+<!ELEMENT intro (name, post)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT post (#PCDATA)>
+
+<!ELEMENT profile (line1, line2)>
+<!ELEMENT line1 (#PCDATA)>
+<!ELEMENT line2 (#PCDATA)>
+
+
+<!ELEMENT education (university, school, primarySchool)>
+<!ELEMENT university (universityName, duration, degree)>
+<!ELEMENT universityName (#PCDATA)>
+<!ELEMENT duration (#PCDATA)>
+<!ELEMENT degree (#PCDATA)>
+
+<!ELEMENT school (schoolName, duration, achievements*)>
+<!ELEMENT schoolName (#PCDATA)>
+<!ELEMENT duration (#PCDATA)>
+
+<!ELEMENT achievements (title, description)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT primarySchool (primarySchoolName, duration)>
+<!ELEMENT primarySchoolName (#PCDATA)>
+<!ELEMENT duration (#PCDATA)>
+
+
+<!ELEMENT skills (name,type)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT competencies (name,type)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT contact (phone, linkedIn, email)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT linkedIn (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+
+<!ELEMENT hobby (hobbyNumber,hobbyName)>
+<!ELEMENT hobbyNumber (#PCDATA)>
+<!ELEMENT hobbyName (#PCDATA)>
+]>
+
+<resume>
+
+  <intro>
+    <name>Syeda Zainab Khaleel</name>
+    <post>STUDENT</post>
+  </intro>
+
+  <profile>
+    <line1>Currently studying in University of Wollongong, Dubai.</line1>
+    <line2>Enrolled in Bachelor of Computer Science with Majors in Digital System Security.</line2>
+  </profile>
+
+  <education>
+    <university>
+      <universityName>University of Wollongong in Dubai, United Arab Emirates</universityName>
+      <duration>2019 - Present</duration>
+      <degree>Bachelor of Computer Science-Digital System Security</degree>
+    </university>
+
+    <school>
+      <schoolName>Dunes International School, Kingdom of Saudi Arabia</schoolName>
+      <duration>2013 - 2019</duration>
+
+      <achievements>
+        <title>Leadership: </title>
+        <description>Part of the Student Council as House Captain (2 terms), Sports Captain (1 term), School Captain (1 term).</description>
+      </achievements>
+
+      <achievements>
+        <title>Co-curricular: </title>
+        <description>Model United Nations, Debates, Extempore, Quiz (regional) Competitions, Toastmasters.</description>
+      </achievements>
+
+      <achievements>
+        <title>Sports: </title>
+        <description>Badminton (zonal), Shotput (regional), Discus Throw (national).</description>
+      </achievements>
+
+      <achievements>
+        <title>Management: </title>
+        <description>Hosted and organized various school/inter-school events.</description>
+      </achievements>
+    </school>
+
+    <primarySchool>
+      <primarySchoolName>Indian Central School, Kuwait</primarySchoolName>
+      <duration>2005 - 2013</duration>
+    </primarySchool>
+
+  </education>
+
+
+  <skills>
+    <name>C++</name>
+    <type>Knowledge-based</type>
+  </skills>
+
+  <skills>
+    <name>Java</name>
+    <type>Knowledge-based</type>
+  </skills>
+
+  <skills>
+    <name>HTML</name>
+    <type>Knowledge-based</type>
+  </skills>
+
+
+  <competencies>
+    <name>Leadership</name>
+    <type>Personal trait</type>
+  </competencies>
+
+  <competencies>
+    <name>Organized</name>
+    <type>Functional</type>
+  </competencies>
+
+  <competencies>
+    <name>Time Management</name>
+    <type>Personal trait</type>
+  </competencies>
+
+  <competencies>
+    <name>Challenge Driven</name>
+    <type>Personal trait</type>
+  </competencies>
+
+  <competencies>
+    <name>Problem solving</name>
+    <type>Personal trait</type>
+  </competencies>
+
+
+  <contact>
+    <phone>+971-56-301-7868</phone>
+    <linkedIn>https://www.linkedin.com/in/zainab-syeda-774b921a0/</linkedIn>
+    <email>szk328@uowmail.edu.au</email>
+  </contact>
+
+
+  <hobby>
+    <hobbyNumber>1</hobbyNumber>
+    <hobbyName>Badminton</hobbyName>
+  </hobby>
+
+  <hobby>
+    <hobbyNumber>2</hobbyNumber>
+    <hobbyName>Discus Throw</hobbyName>
+  </hobby>
+
+  <hobby>
+    <hobbyNumber>3</hobbyNumber>
+    <hobbyName>Coding</hobbyName>
+  </hobby>
+
+  <hobby>
+    <hobbyNumber>4</hobbyNumber>
+    <hobbyName>Reading</hobbyName>
+  </hobby>
+
+  <hobby>
+    <hobbyNumber>5</hobbyNumber>
+    <hobbyName>Poetry Writing</hobbyName>
+  </hobby>
+
+  <hobby>
+    <hobbyNumber>6</hobbyNumber>
+    <hobbyName>Baking</hobbyName>
+  </hobby>
+
+</resume>

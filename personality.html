@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+  #szk {
+    display: block;
+    font-size: 2.3em;
+    color: black;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    font-family: Times New Roman;
+  }
+
+  .container {
+        width: 65%;
+        height: 100%;
+        padding-top: 45px;
+        padding-left: 45px;
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+        font-family: Times New Roman;
+        float:center;
+    }
+  </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+  <script>
+    //For tool tip
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+
+  </head>
+
+  <body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1 id="szk">Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()" style="padding: 10px 16px;">Change background color!</button>
+
+  <div class="topnav">
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a class="active" href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <div class="container">
+
+    <h2 align="center" style="font-weight:bold; font-size:1.26em">Cattell's 16 Personality Factors test results:</h2>
+
+  </div>
+
+    <table class="container" cellpadding="0">
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are impersonal, distant, cool, reserved, detached, formal and aloof. High scorers are outgoing, attentive to others, kindly, easy-going, participating and like people." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Warmth:
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" style="width:80%; background-color: #0000ff;">
+              <span style="color:white">80%</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title=" Low scorers prefer common sense, high scorers prefer abstract thinking." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Reasoning:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:92.5%; background-color: #000080;">
+            <span style="color:white">92%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are reactive emotionally, changeable, affected by feelings, emotionally less stable, easily upset. High scorers are emotionally stable, adaptive, mature, and face reality calmly." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td>Emotional stability:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:90%; background-color: #000080;">
+            <span style="color:white">90%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are deferential, cooperative, avoids conflict, submissive, humble, obedient, easily led, docile and accommodating. High scorers are dominant, forceful, assertive, aggressive, competitive, stubborn and bossy." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Dominance:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:87.5%; background-color: #0000ff;">
+            <span style="color:white">87%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="High scorers are serious, restrained, prudent, taciturn, introspective and silent. Low scorers are lively, animated, spontaneous, enthusiastic, happy-go-lucky, cheerful, expressive and impulsive. " style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Liveliness:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:65%; background-color: #38ffa5;">
+            <span style="color:black">65%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title=" Low scorers are nonconforming, self indulgent and disregard rules. High scorers are rule-conscious, dutiful, conscientious, conforming, moralistic, staid and rule bound." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Rule-consciousness:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:87.5%; background-color: #0000ff;">
+            <span style="color:white">87%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are shy, threat-sensitive, timid, hesitant and intimidated. High scorers are socially bold, venturesome, thick-skinned and uninhibited." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Social boldness:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:92.5%; background-color: #000080;">
+            <span style="color:white">92%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are utilitarian, objective, unsentimental, tough minded, self-reliant, no-nonsense and rough. High scorers are sensitive, aesthetic, sentimental, tender-minded, intuitive and refined." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Sensitivity:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:85%; background-color: #0000ff;">
+            <span style="color:white">85%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are trusting, unsuspecting, accepting, unconditional and easy. High scorers are vigilant, suspicious, skeptical, distrustful and oppositional." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Vigilance:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:22.5%; background-color: #38ffa5;">
+            <span style="color:black">22%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are grounded, practical, prosaic, solution oriented, steady and conventional. High scorers are abstract, imaginative, absent minded, impractical and absorbed in ideas." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Abstractedness:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:62.5%; background-color: #38ffa5;">
+            <span style="color:black">62%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are forthright, genuine, artless, open, guileless, naive, unpretentious and involved. High scorers are rivate, discreet, nondisclosing, shrewd, polished, worldly, astute and diplomatic." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Privateness:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:10%; background-color: #38ffa5;">
+            <span style="color:black">10%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are self-assured, unworried, complacent, secure, free of guilt, confident and self satisfied. High scorers are apprehensive, self-doubting, worried, guilt prone, insecure, worrying and self blaming." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Apprehension:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:27.5%; background-color: #38ffa5;">
+            <span style="color:black">27%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are traditional, attached to familiar, conservative and respect traditional ideas. High scorers are open to change, experimental, liberal, analytical, critical, free-thinking and flexibile." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Openness to change:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:92.5%; background-color: #000080;">
+            <span style="color:white">92%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are group-oriented and affiliative. High scorers are self-reliant, solitary, resourceful, individualistic and self-sufficient." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Self-reliance:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:72.5%; background-color: #0000ff;">
+            <span style="color:white">72%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scoerers tolerate disorder are unexacting, flexible, undisciplined, lax, self-conflict, impulsive, careless of social rules and uncontrolled. High scorers are perfectionist, organized, compulsive, self-disciplined, socially precise, exacting will power, control and self-sentimental." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Perfectionism:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:85%; background-color: #0000ff;">
+            <span style="color:white">85%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="65px">
+          <a data-toggle="tooltip" data-placement="left" title="Low scorers are relaxed, placid, tranquil, torpid, patient, composed low drive. High scorers are tense, high energy, impatient, driven, frustrated, over wrought and time driven." style="color:darkblue;font-size:16px; text-decoration:underline;">More.</a>
+        </td>
+        <td><br/>Tension:
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" style="width:5%; background-color: #38ffa5;">
+            <span style="color:black">5%</span>
+          </div>
+        </div>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <br/><br/><br/><br/><br/><br/>
+
+  </body>
+</html>

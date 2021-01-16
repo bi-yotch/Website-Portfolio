@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <style>
+
+  .container {
+        width: 70%;
+        height: 100%;
+        margin-top: 4%;
+        margin-left:70px;/* Top as suggested by t.niese */
+    /*  padding-left: 45px;  Adjust the value as needed to get it to be centered */
+  }
+
+  </style>
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+</head>
+
+<body id="body">
+
+  <div style="padding-left:16px" class="nav">
+    <h1>Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+  <div class="topnav" >
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a class="active" href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <div class=container>
+
+    <h2 style="margin-bottom:2%; font-size: 1.7em;" align=right>
+      Click on a country or its name to see a picture of that place.
+    </h2>
+    <img src="Pics/mapColorText.svg" usemap="#worldMap" width="120%" style="margin-left:-12%">
+
+    <map name="worldMap">
+      <area shape="circle" coords="677,210,20" alt="KSA" style="cursor:pointer" onclick="pictureIn(0)">
+      <area shape="circle" coords="689,159.5,15" alt="Kuwait" style="cursor:pointer" onclick="pictureIn(1)">
+      <area shape="circle" coords="715,185,15" alt="Bahrain" style="cursor:pointer" onclick="pictureIn(2)">
+      <area shape="circle" coords="749,216,20" alt="UAE" style="cursor:pointer" onclick="pictureIn(3)">
+      <area shape="circle" coords="799,206,30" alt="India" style="cursor:pointer" onclick="pictureIn(4)">
+      <area shape="circle" coords="810,270,20" alt="SriLanka" style="cursor:pointer" onclick="pictureIn(5)">
+      <area shape="circle" coords="900,267,20" alt="Malaysia" style="cursor:pointer" onclick="pictureIn(6)">
+      <area shape="circle" coords="855,319,20" alt="Singapore" style="cursor:pointer" onclick="pictureIn(7)">
+      <area shape="circle" coords="910,230,20" alt="Thailand" style="cursor:pointer" onclick="pictureIn(8)">
+      <area shape="circle" coords="880,230,20" alt="Thailand" style="cursor:pointer" onclick="pictureIn(8)">
+    </map>
+  </div>
+
+  <div style="float: right; margin-top:-40%; margin-right:5%;">
+    <h1 id="countryName" style="font-family:Vivaldi;"></h1>
+  </div>
+
+  <div id="countryPicture" style="float: right; margin-top:-31%; margin-right:-23%;"></div>
+
+  <div id="credits" style="float: right; margin-top:-13%; margin-right:5%;"></div>
+
+  <script>
+  function pictureIn(number){
+
+    var nameArray = ["Saudi Arabia", "Kuwait", "Bahrain", "UAE", "India", "Sri Lanka", "Malaysia", "Singapore", "Thailand"];
+    document.getElementById("countryName").innerHTML = nameArray[number];
+    document.getElementById("countryPicture").innerHTML = "<img src='Pics/"+nameArray[number]+".png' width=30%>";
+    document.getElementById("countryPicture").style.transform = "scale(1.6)";
+    document.getElementById("countryPicture").style.transition= "2s ease";
+
+    var creditsArray = ["Syeda Zainab", "Shrovra K Gope", "Soha Ghazi", "Ayushi Agnihotri", "Syeda Zainab", "Syeda Zainab", "Muriam Anis", "Syeda Zainab", "Syeda Zainab"];
+
+    document.getElementById("credits").innerHTML = "Photo Credits: "+creditsArray[number]+".";
+  }
+  </script>
+
+  <br/><br/><br/>
+
+  </body>
+</html>

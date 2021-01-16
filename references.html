@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="js_css/commonStyle.css">
+
+  <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function setRandomColor() {
+        document.getElementById('body').style.background= "linear-gradient(-220deg,"+getRandomColor() +","+ getRandomColor()+")";
+      }
+
+  </script>
+
+  <style>
+
+    body {
+      font-family: Times;
+      color: black;
+    }
+
+    #szk {
+      display: block;
+      font-size: 2.3em;
+      color: black;
+      margin-top: 0.67em;
+      margin-bottom: 0.67em;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: bold;
+      font-family: Times New Roman;
+    }
+
+    .container {
+          width: 70%;
+          height: 100%;
+          padding-top: 45px; /* Top as suggested by t.niese */
+          padding-left: 45px; /* Adjust the value as needed to get it to be centered */
+    }
+
+    .sortButton {
+      background-color:#333;
+     border-radius:25px;
+     border:1px solid white;
+     display:inline-block;
+     cursor:pointer;
+     color:#ffffff;
+     font-family:Times;
+     font-size:18px;
+     padding:12px 16px;
+     text-decoration:none;
+     text-shadow:0px 1px 0px #290ccc;
+
+     /*float:left;*/
+     margin-top:1%;
+     margin-left:auto; margin-right:;
+     cursor:pointer;
+    }
+    .sortButton:hover {
+     background-color:black;
+    }
+    .sortButton:active {
+     position:relative;
+     top:1px;
+    }
+
+    #firstSort {background-color:#151B54; }
+    #firstSort:hover { background-color:black; }
+
+    #sort {background-color:darkblue; }
+    #sort:hover {background-color:black; }
+
+    #second {background-color:blue; }
+    #second:hover { background-color:black; }
+
+    #firstGroup {background-color:purple; }
+    #firstGroup:hover { background-color:black; }
+
+    #group {background-color:#B041FF; }
+    #group:hover {background-color:black; }
+
+    table {border: 1px solid black; border-collapse: transparent; }
+    th { text-align: center;}
+    th,td {padding: 10px; font-size:16px;}
+    table a:link { color: #0000EE; text-decoration: underline;}
+    table a:visited { color: maroon; }
+
+  </style>
+
+  </head>
+
+  <body id="body" onload="createDB()">
+
+  <div style="padding-left:16px" class="nav">
+    <h1 id=szk>Syeda Zainab Khaleel</h1>
+  </div>
+
+  <button class="myButton" onclick="setRandomColor()">Change background color!</button>
+
+  <div class="topnav" >
+    <a href="index.html">Home</a>
+    <a href="aboutMe.html">About Me</a>
+    <a href="personality.html">Personality</a>
+    <a href="resume.html">Resume</a>
+    <a href="favourites.html">Favourites</a>
+    <a href="events.html">Events</a>
+    <a href="travel.html">Travel</a>
+    <a href="sports.html">Sports</a>
+    <a href="poetry.html">Poetry</a>
+    <a class="active" href="references.html">References</a>
+    <a href="feedback.html">Feedback</a>
+  </div>
+
+  <br/>
+  <h1 align="center" style="font-weight: bold; font-size:35px"> References</h1>
+
+  <div style="margin-left:6%; margin-top:-4%">
+    <br/><br/>
+    <button class="sortButton" style="margin-left:auto; margin-right:auto;" onclick="displayDB()">Default display</button>
+    <button class="sortButton" id="firstSort" style="margin-left:2;" onclick="Options('sort')">Sort</button>
+    <button class="sortButton" id="firstGroup" style="margin-left:2;" onclick="Options('group')">Group</button>
+    <br/>
+
+    <div id="optionColumns" style="visibility:hidden;"></div>
+
+    <div id="orderSelection"></div>
+  </div>
+
+  <h3 id="titlee" align="center" style="font-weight: bold;margin-top:2%"></h3>
+  <div id="tableSection" style="margin-top: 2%; margin-left:60px; margin-right:60px; float:relative; ">
+
+    <table border="1" cellpadding="10" id="OutputSection" width="100%" style="visibility:hidden;"></table>
+
+  </div>
+
+  <br/><br/><br/><br/>
+  <div  id="intro" align="center">
+    <h2 style="font-weight: bold; font-size:25px">Click the buttons above to look through the references provided.</h2>
+    <h4 style="font-weight: bold; font-style: italic;">(Works on browsers that support WebSQL)</h4>
+    <a data-toggle="tooltip" data-placement="bottom" title="Click 'Default Display' twice to see calculated ages." style="color:darkblue;font-size:16px; text-decoration:underline;">NOTE</a>
+  </div>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+  <!--<button type="button" class="btn" style="width:20%" name="clear" onclick="clearDatabase()">Clear ALL.</button>-->
+
+  <script>
+
+    //For tool tip
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+  var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+  function createDB(){
+
+      //clearDatabase();    //commentedSo that the calculateAge() function will work.
+
+      //Creating the table
+    db.transaction(function (tx) {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS refer(name VARCHAR, relationship VARCHAR, dateOfBirth DATE, currentAge INT, gender CHAR(1), countryOfResidence CHAR, phoneNumber VARCHAR, emailAddress VARCHAR, instaHandle VARCHAR PRIMARY KEY)');
+
+      tx.executeSql("INSERT INTO refer VALUES('Kulsum Ayub', 'Junior Colleague', '05/21/2002', 0, 'F', 'Saudi Arabia', '+966537852265', 'kulsum@email.com', 'kulsum_ayub')");
+      tx.executeSql("INSERT INTO refer VALUES('Nasreen Khalid', 'Colleague', '11/17/2001', 0, 'F', 'Georgia', '+995551555879', 'nasss@gmail.com', 'nas_nino')");
+      tx.executeSql("INSERT INTO refer VALUES('Ayub Jawad', 'Senior Colleague', '03/17/1997', 0, 'M', 'United Arab Emirates', '+971534564345', 'ayubjk@yahoo.me', 'ayub1797')");
+      tx.executeSql("INSERT INTO refer VALUES('Soha Ghazi', 'Colleague', '12/16/2001', 0, 'F', 'Bahrain', '+973523427856', 'sghaziie@yahoo.com', 'sohaghazie')");
+      tx.executeSql("INSERT INTO refer VALUES('Prathulya KJ', 'Junior Colleague', '09/08/2002', 0, 'F', 'India', '+917112343213', 'prath@outlook.net', 'prxthulya._')");
+      tx.executeSql("INSERT INTO refer VALUES('Ashley O Fernandes', 'Senior Colleague', '10/26/1997', 0, 'M', 'United Arab Emirates', '+971503452234', 'ashlee21@email.com', 'ashlee_alpha')");
+      tx.executeSql("INSERT INTO refer VALUES('Syed Moqhtar', 'Sibling', '06/20/2005', 0, 'M', 'United Arab Emirates', '+971567895432', 'syed@gmail.com', 'thunder.rl')");
+      tx.executeSql("INSERT INTO refer VALUES('Rohan S Francis', 'Colleague', '11/09/1997', 0, 'M', 'United Arab Emirates', '+971534567865', 'rohan@outlook.net', 'rein.again')");
+      tx.executeSql("INSERT INTO refer VALUES('Eram Khan', 'Junior Colleague', '11/22/2004', 0, 'F', 'Saudi Arabia', '+966544823267', 'eram@outlook.com', 'eram._.khan')");
+      tx.executeSql("INSERT INTO refer VALUES('Habib Khan', 'Senior Colleague', '03/17/1999', 0, 'M', 'United Kingdom', '+441632960337', 'hkhan0317@protonmail.com', 'heyitsmehabib')");
+      tx.executeSql("INSERT INTO refer VALUES('Ayushi Agnihotri', 'Colleague', '02/15/2002', 0, 'F', 'United Arab Emirates', '+971537879054', 'ayu@fmail.com', 'ayushi.x.x')");
+      tx.executeSql("INSERT INTO refer VALUES('Cathy Mellark', 'Junior Colleague', '04/26/2002', 0, 'F', 'India', '+917878787878', 'mcathy@hotmail.com', '_catheh')");
+      tx.executeSql("INSERT INTO refer VALUES('Rohit Bala C', 'Colleague', '03/21/2001', 0, 'M', 'India', '+917434356722', 'rohit_b2@yahoo.com', '_rxhit_')");
+      tx.executeSql("INSERT INTO refer VALUES('Yashwant Vadapalli', 'Colleague', '01/01/2000', 0, 'M', 'United Arab Emirates', '+971567899909', 'yashhhhi@outlook.com', 'yash.vadapalli')");
+    });
+    //displayDB();
+  }
+
+  function displayDB(columnName, order) {
+
+    document.getElementById('intro').style.visibility = "hidden";
+
+    if(columnName==null && order==null) {
+      document.getElementById('optionColumns').style.visibility = "hidden";
+      document.getElementById('orderSelection').style.visibility = "hidden";
+      document.getElementById('tableSection').style.margintop = "3%";
+      document.getElementById('titlee').style.visibility = "visible";
+      document.getElementById('titlee').innerHTML = "Default table:";
+
+      var statement = 'SELECT * FROM refer';
+    }
+    else if(order==null)
+      var statement = 'SELECT * FROM refer GROUP BY '+columnName+';';
+    else
+      var statement = 'SELECT * FROM refer ORDER BY '+columnName+' '+order+';';
+
+      db.transaction( function (tx) {
+        tx.executeSql(statement, [], function (tx, results) {
+
+            var len = results.rows.length;
+            var html = '<table border="1" cellpadding="10" style="border: 1px solid lightgrey"  id="OutputSection" ><tr><th>Name</th><th>Relationship</th><th>Date of Birth</th><th>Age</th><th>Gender</th><th>Country of Residence</th><th>Phone Number</th><th>Email Address</th><th>Instagram Handle</th></tr>';
+            for (var i = 0; i < len; i++)
+            {
+                updateAge(results.rows.item(i).name, results.rows.item(i).dateOfBirth);
+                html += "<tr><td>"+results.rows.item(i).name+"</td><td>"+results.rows.item(i).relationship+"";
+                html += "</td><td>"+results.rows.item(i).dateOfBirth+"</td><td>"+results.rows.item(i).currentAge+"";
+                html += "</td><td>"+results.rows.item(i).gender+"";
+                html += "</td><td>"+results.rows.item(i).countryOfResidence+"</td><td>"+results.rows.item(i).phoneNumber+"";
+                html += "</td><td><a href='mailto:"+results.rows.item(i).emailAddress+"' >"+(results.rows.item(i).emailAddress)+"</a></td>";
+                html += "<td><a href='https://www.instagram.com/"+results.rows.item(i).instaHandle+"' target='_blank'>@"+results.rows.item(i).instaHandle+"</a></td></tr>";
+            }
+
+            document.getElementById("OutputSection").innerHTML = html;
+            document.getElementById("OutputSection").style.visibility = "visible";
+
+        }, null);
+
+      });
+  }
+
+  function updateAge(name, date){
+    db.transaction(function (tx) {
+      var newAge = calculateAge(date);
+      tx.executeSql("UPDATE refer SET currentAge="+newAge+" WHERE name LIKE '"+name+"' ;");
+
+    });
+  }
+
+  function calculateAge(givenDate) {
+      var dateArray = Array.from(givenDate);
+      var len = dateArray.length;
+
+      var yearString="";
+      for(var i=6; i<len;i++)
+        yearString += dateArray[i];
+
+      var monthString="";
+      for(var i=0; i<2;i++)
+        monthString += dateArray[i];
+
+      var dayString="";
+      for(var i=4; i<6;i++)
+        dayString += dateArray[i];
+
+      var today = new Date();
+
+      if(parseInt(today.getMonth()) < parseInt(monthString))
+        var age = parseInt(today.getFullYear()) - parseInt(yearString)-1;
+      else if(parseInt(today.getMonth()) == parseInt(monthString))
+      {
+        if(parseInt(today.getDay()) > parseInt(dayString))
+          var age = parseInt(today.getFullYear()) - parseInt(yearString);
+        else
+          var age = parseInt(today.getFullYear()) - parseInt(yearString)-1;
+      }
+      else
+        var age = parseInt(today.getFullYear()) - parseInt(yearString);
+
+      return parseInt(age);
+    }
+
+  //Functions to display sorted TABLE
+  function Options(type){
+    document.getElementById('intro').style.visibility = "hidden";
+
+    var o = document.getElementById('optionColumns');
+    o.style.visibility = "visible";
+
+    var IDArray = ["name", "relationship", "dateOfBirth", "currentAge", "gender", "countryOfResidence", "phoneNumber", "emailAddress", "instaHandle"];
+    var nameArray = ["Name", "Relationship", "Date of Birth", "Age", "Gender", "Country of Residence", "Phone Number", "Email Address", "Instagram Handle"];
+
+    o.innerHTML = "";
+    for(var i=0; i<IDArray.length; i++)
+        o.innerHTML +=  '<button class="sortButton" id="'+type+'" onclick='+type+'By("'+IDArray[i]+'") style="margin-right:0.7%">'+nameArray[i]+'</button>';
+
+    document.getElementById('orderSelection').style.visibility = "hidden";
+    document.getElementById('OutputSection').style.visibility = "hidden";
+    document.getElementById('titlee').style.visibility = "hidden";
+  }
+
+  function groupBy(columnName){
+    document.getElementById('orderSelection').style.visibility = "hidden";
+    document.getElementById('OutputSection').style.visibility = "hidden";
+
+    document.getElementById('titlee').style.visibility = "visible";
+    document.getElementById('titlee').innerHTML = "Following table displays the first record for each unique value of "+columnName+".<br/>";
+
+    displayDB(columnName);
+  }
+
+  function sortBy(columnName){
+    document.getElementById('orderSelection').style.visibility = "visible";
+    document.getElementById('OutputSection').style.visibility = "hidden";
+    document.getElementById('titlee').style.visibility = "hidden";
+
+    var orderSelection = document.getElementById('orderSelection');
+    orderSelection.innerHTML = '<button class="sortButton" id=second style="margin-left:auto; margin-right:4%;" onclick=displayOrderByASC("'+columnName+'") >Ascending order</button>';
+    orderSelection.innerHTML += '<button class="sortButton" id=second style="margin-left:auto; margin-bottom:0%;" onclick=displayOrderByDESC("'+columnName+'")>Descending order</button>';
+  }
+
+  function displayOrderByASC(columnName) {
+    document.getElementById('titlee').style.visibility = "visible";
+    document.getElementById('titlee').innerHTML = "Following table is ordered by "+columnName+" in Ascending order.";
+      displayDB(columnName, "ASC");
+  }
+
+  function displayOrderByDESC(columnName) {
+    document.getElementById('titlee').style.visibility = "visible";
+    document.getElementById('titlee').innerHTML = "Following table is ordered by "+columnName+" in Descending order.";
+      displayDB(columnName, "DESC");
+  }
+
+  function clearDatabase() {
+    db.transaction(function (tx) {
+      tx.executeSql('DELETE FROM refer;');
+      //var html = '<table border="1" cellpadding="10" style="border: 1px solid lightgrey"  id="OutputSection" ><tr><th>Name</th><th>Relationship</th><th>Date of Birth</th><th>Age</th><th>Gender</th><th>Country of Residence</th><th>Phone Number</th><th>Email Address</th><th>Instagram Handle</th></tr>';
+      //document.getElementById("OutputSection").innerHTML = html;
+      createDB();
+    });
+  }
+
+  </script>
+
+  </body>
+</html>
