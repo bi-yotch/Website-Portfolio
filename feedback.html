@@ -151,6 +151,9 @@
       //Creating the table
       db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS FEEDBACK(comment MEMO, userName VARCHAR, emailAddress VARCHAR PRIMARY KEY, dateCommented VARCHAR, dayCommented VARCHAR, timeCommented VARCHAR)');
+	
+	tx.executeSql("INSERT INTO FEEDBACK VALUES('This website is based on the color theme cyberpunk.', 'The Developer', 'gemstone7139@gmail.com', '16/1/2021', 'Saturday', '11 PM : 11 : 32')");
+	
       });
 
       displayDB();
@@ -249,7 +252,7 @@
     var today = new Date();
     function getDate() {
       var date = today.getDate();//Passes the day
-      date += "/"+today.getMonth();//Passes the month
+      date += "/"+(today.getMonth() + 1);//Passes the month
       date += "/"+today.getFullYear();//Passes the year
       return date;
     }
