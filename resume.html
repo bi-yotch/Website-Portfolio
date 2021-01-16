@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="js_css/commonStyle.css">
 
   <style>
@@ -44,7 +44,7 @@
 
 </head>
 
-<body id="body" onload="displayResult()">
+<body id="body">
 
   <div style="padding-left:16px" class="nav">
     <h1>Syeda Zainab Khaleel</h1>
@@ -67,6 +67,10 @@
   </div>
 
   <script>
+    $(document).ready(function(){
+      displayResult();
+    });
+    
     function loadXMLDoc(filename)
     { xhttp = new XMLHttpRequest();
 
