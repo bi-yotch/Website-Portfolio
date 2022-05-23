@@ -14,7 +14,7 @@ Each webpage uses a combination of concepts learnt through the course, I have de
 Concepts used in addition to HTML, CSS and Javascript:
 
 * [AboutMe.html](https://bi-yotch.github.io/Website-Portfolio/aboutMe.html)
-   * Makes use of Bootstrap
+   * Bootstrap
 * [Personality.html](https://bi-yotch.github.io/Website-Portfolio/personality.html)
    * Bootstrap
    * JQuery for tooltips
