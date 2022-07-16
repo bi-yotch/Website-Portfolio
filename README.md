@@ -32,7 +32,7 @@ Concepts used in addition to HTML, CSS and Javascript:
    * WebSQL
    * REGEX
 
-*Note: Images have been blurred for privacy reasons, images that are displayed otherwise have been done so with the permission of the people in them. (Events/Sports/Travel) Personal data such as names, birthdates, and Instagram handles have been included with permission. Other information such has phone numbers and email addressess are dummy data. (References)*
+*Note: Images have been blurred for privacy reasons, images that are displayed otherwise have been done so with the permission of the people in them. (Events/Sports/Travel) Personal data such as names, birthdates, and Instagram handles have been included with permission. Other information such as phone numbers and email addressess are dummy data. (References)*
 
 ---
 ## Links Used
